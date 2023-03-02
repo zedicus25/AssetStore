@@ -1,7 +1,7 @@
 import axios from "axios";
 import token from './jwtToken';
 
-const apiUrl = "http://wonof44260-001-site1.itempurl.com/api";
+const apiUrl = "https://jwt20230228183505.azurewebsites.net/api";
 //http://wonof44260-001-site1.itempurl.com
 //https://jwt20230228183505.azurewebsites.net
 
