@@ -105,6 +105,7 @@ import ManagerNavBar from "../ManagerNavBar/ManagerNavBar";
 import token from '../../jwtToken';
 import { useEffect } from "react";
 import {  useNavigate } from "react-router-dom";
+import ProductsTabel from "../ProductsTabel/ProductsTabel";
 
 const UpdateProductPanel = () => {
   const navigate = useNavigate();
@@ -120,6 +121,7 @@ const UpdateProductPanel = () => {
             <ManagerNavBar></ManagerNavBar>
             <div style={{padding:20}}>
               Update products panel
+              <ProductsTabel></ProductsTabel>
             </div>
         </div>
     );

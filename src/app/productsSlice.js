@@ -27,6 +27,14 @@ export const getProductsInCategory = createAsyncThunk(
     }
 )
 
+export const getProductsInPage = createAsyncThunk(
+    'products/getProductInPage',
+    async(state) => {
+        const res = await api.getProductsInPage(state);
+        return res;
+    }
+);
+
 export const searchProducts = createAsyncThunk(
     'products/searchProducts',
     async(state) => {
@@ -37,10 +45,17 @@ export const searchProducts = createAsyncThunk(
 
 export const addProduct = createAsyncThunk(
     'products/addProduct',
-     async(state) => {
+    async(state) => {
         const res = await api.addProduct(state);
         return res;
-     }
+    }
+);
+export const updateProduct = createAsyncThunk(
+    'products/updateProduct',
+    async(state) => {
+        const res = await api.updateProduct(state);
+        return res;
+    }
 );
 
 export const productsSlice = createSlice({
@@ -78,6 +93,17 @@ export const productsSlice = createSlice({
             }).addCase(addProduct.pending, (state) => {
                 state.status = 'loading';
             }).addCase(addProduct.fulfilled, (state, action) => {
+                state.status = 'idle';
+                return state;
+            }).addCase(getProductsInPage.pending, (state) => {
+                state.status = 'loading';
+            }).addCase(getProductsInPage.fulfilled, (state, action) =>{
+                state.values = [];
+                state.status = 'idle';
+                state.values = action.payload;
+            }).addCase(updateProduct.pending, (state) => {
+                state.status = 'loading';
+            }).addCase(updateProduct.fulfilled, (state, action) => {
                 state.status = 'idle';
                 return state;
             });

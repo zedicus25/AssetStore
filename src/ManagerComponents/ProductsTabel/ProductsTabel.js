@@ -1,34 +1,36 @@
-import axios from "axios";
-import { Component } from "react";
+import token from '../../jwtToken';
+import {  useNavigate } from "react-router-dom";
+import {  useEffect, useState } from "react";
 import './ProductsTabel.css';
-import { UpdateModal } from "./UpdateModal";
+import { useDispatch, useSelector } from "react-redux";
+import { getAsync as selectSubCategories, selectValues as getSubCategories } from "../../app/subCategoriesSlice";
+import { getAsync as selectCategories, selectValues as getCateogries } from "../../app/categoriesSlice";
+import {getProductsInPage as selectProduct, selectValues as getResult} from "../../app/productsSlice";
+import {UpdateModal} from '../UpdateProductModal/UpdateModal'
 
+const ProductsTabel = () => {
+    const [page, setPage] = useState(1);
+    const [perPage, setPerPage] = useState(10);
+    const subCategories = useSelector(getSubCategories);
+    const categories = useSelector(getCateogries);
+    const assets = useSelector(getResult);
+    const [modalShow, setModalShow] = useState(false);
+    const [selectedProduct, setSelectedProduct] = useState({});
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-export class ProducsTabel extends Component{
-    constructor(props){
-        super(props);
-        this.state ={
-            modalShow: false,
-            selectedproduct: ""
-        }
-    }
+    useEffect(() => {
+        const managerInfo = token.getUserData();
+        if(managerInfo.Manager === false)
+            navigate('/');
+        dispatch(selectSubCategories());
+        dispatch(selectCategories());
+        dispatch(selectProduct({perPage:perPage, page:page}))
+    }, []);
 
-
-    setStatus(productId,statusId){
-        axios.post(`http://wonof44260-001-site1.itempurl.com/api/Products/setStatus?productId=${productId}&statusId=${statusId}`,{},{
-            headers:{
-                'content-type': 'text/json',
-                'Authorization': 'Bearer ' +  sessionStorage.getItem("token")
-            }
-          }).then(function(res){
-        if(res.status == '200')
-            alert('Saved!');
-      });
-    }
-    render(){
-        return(
-            <div style={{padding:20}}>
-                <table>
+    return(
+        <div style={{padding:20}}>
+             <table>
                     <thead>
                         <tr>
                             <td>Id</td>
@@ -45,28 +47,31 @@ export class ProducsTabel extends Component{
                         </tr>
                     </thead>
                     <tbody>
-                        {this.props['products'].map((x, idx)=> (
-                            <tr onClick={() => {
-                                this.setState({modalShow: true});
-                                this.setState({selectedproduct: x});
-                            }} id={`productId=${x.id}`} key = {idx}>
+                        {assets.map((x, idx)=> (
+                            <tr id={`productId=${x.id}`} key = {idx}>
                                 <td>{x.id}</td>
                                 <td>{x.name}</td>
                                 <td>{x.price}$</td>
                                 <td><img src={x.photo} alt={x.photo} style={{width:50, height:50}}></img></td>
-                                <td>{this.props['categories'].find(y => y.id==x.categoryId).name}</td>
-                                <td>{this.props['subCategories'].find(y => y.id ==x.subCategoryId).name}</td>
+                                <td>{categories.find(y => y.id==x.categoryId).name}</td>
+                                <td>{subCategories.find(y => y.id ==x.subCategoryId).name}</td>
                                 <td>{x.sold}</td>
                                 <td>{x.quantity}</td>
-                                <td><input onChange={(e) => this.setStatus(x.id, e.target.checked ? 1 : 2)} type='checkbox' defaultChecked={x.statusId === 1}></input></td>
-                                <td><input onChange={(e) => this.setStatus(x.id, e.target.checked ? 4 : 1)} type='checkbox' defaultChecked={x.statusId === 4}></input></td>
-                                <td><input onClick={() => this.setStatus(x.id, 3)} type='button' value='Delete' className="btn btn-danger"></input></td>  
+                                <td><input type='checkbox' defaultChecked={x.statusId === 1}></input></td>
+                                <td><input type='checkbox' defaultChecked={x.statusId === 4}></input></td>
+                                <td>
+                                    <input type='button' onClick={() => {
+                                    setModalShow(true);
+                                    setSelectedProduct(x);
+                                    }} value='Update' className="btn btn-warning"></input>
+                                <input type='button' value='Delete' className="btn btn-danger"></input></td>  
                             </tr>                           
                         ))}
-                    </tbody>
+                    </tbody>    
                 </table>
-                <UpdateModal subcategories={this.props.subCategories} categories={this.props.categories} selectedproduct={this.state.selectedproduct} onHide={() => this.setState({modalShow: false})} show={this.state.modalShow}></UpdateModal>
-            </div>
-        );
-    }
+                <UpdateModal categories={categories} subcategories={subCategories} selectedproduct={selectedProduct} onHide={() => setModalShow(false)} show={modalShow}></UpdateModal>
+        </div>
+    )
 }
+
+export default ProductsTabel;
