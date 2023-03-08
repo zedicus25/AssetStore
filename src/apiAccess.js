@@ -1,8 +1,8 @@
 import axios from "axios";
 import token from './jwtToken';
 
-//const apiUrl = "https://jwt20230228183505.azurewebsites.net/api";
-const apiUrl = "http://wonof44260-001-site1.itempurl.com/api";
+const apiUrl = "https://assetstoreapi.azurewebsites.net/api";
+//const apiUrl = "http://wonof44260-001-site1.itempurl.com/api";
 //const apiUrl = "https://localhost:7167/api";
 
 
@@ -36,6 +36,23 @@ const post = async(url, data) => {
             token.setToken(response.data.token);
         res = response;
     }).catch(() => res = undefined); 
+    return res;
+}
+
+const del = async (url) => {
+    let res = {};
+    await axios.delete(url, {
+        headers:{
+            "Access-Control-Allow-Origin": "*",
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': "Bearer " + token.getToken()
+        }
+    }).then(function(response) {
+        if(response.data.token)
+            token.setToken(response.data.token);
+        res = response;
+    }).catch(() => res = undefined);
     return res;
 }
 
@@ -87,17 +104,19 @@ const searchProducts = async(state) => {
 }
 
 const addProduct = async(state) => {
-    let res = await post(`${apiUrl}/Products/addProduct`, {
-        Name: state.productName,
-        Price: state.productPrice,
-        Photo: state.productPhoto,
-        CategoryId: state.categoryId,
-        SubCategoryId: state.subCategoryId,
-        Quantity: state.quantity,
-        Sold: state.sold,
-        StatusId: 1
-    });
-    return  res;
+    let res = {};
+    axios.post(`${apiUrl}/Products/addProduct`,state, {
+                    headers:{
+                        'Accept': 'application/json',
+                        'Content-Type': 'multipart/form-data',
+                        'Authorization': "Bearer " + token.getToken()
+                        }
+                        }).then(function(response) {
+                            if(response.data.token)
+                                token.setToken(response.data.token);
+                            res = response;
+                        }).catch(() => res = undefined); 
+                        return res;
 }
 
 const updateProduct = async(state) => {
@@ -115,8 +134,20 @@ const updateProduct = async(state) => {
     return res;
 };
 
+const deleteProduct = async(state) => {
+    return await del(`${apiUrl}/Products/deleteProduct?productId=${parseInt(state.productId)}`)
+}
+
 const getProductsInPage = async(state) => {
     return await get(`${apiUrl}/Products/productsInPage?perPage=${parseInt(state.perPage)}&page=${parseInt(state.page)}`);
+}
+
+const setStatus = async(state) => {
+    return await post(`${apiUrl}/Products/setStatus?productId=${parseInt(state.productId)}&statusId=${parseInt(state.statusId)}`);
+}
+
+const getProductsCount = async() => {
+    return await get(`${apiUrl}/Products/getProductCount`);
 }
 
 
@@ -140,7 +171,10 @@ const methods = {
     getCategories: getCategories,
     addProduct: addProduct,
     getProductsInPage: getProductsInPage,
-    updateProduct: updateProduct
+    updateProduct: updateProduct,
+    deleteProduct : deleteProduct,
+    setStatus: setStatus,
+    getProductsCount: getProductsCount
 }
 
 export default methods;

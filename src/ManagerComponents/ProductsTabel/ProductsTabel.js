@@ -5,8 +5,11 @@ import './ProductsTabel.css';
 import { useDispatch, useSelector } from "react-redux";
 import { getAsync as selectSubCategories, selectValues as getSubCategories } from "../../app/subCategoriesSlice";
 import { getAsync as selectCategories, selectValues as getCateogries } from "../../app/categoriesSlice";
-import {getProductsInPage as selectProduct, selectValues as getResult} from "../../app/productsSlice";
+import {getProductsInPage as selectProduct, selectValues as getResult, deleteProduct as delProd, setStatus as updateStatus} from "../../app/productsSlice";
 import {UpdateModal} from '../UpdateProductModal/UpdateModal'
+import PaginationControl from '../PaginationControl/PaginationControl';
+
+
 
 const ProductsTabel = () => {
     const [page, setPage] = useState(1);
@@ -27,6 +30,40 @@ const ProductsTabel = () => {
         dispatch(selectCategories());
         dispatch(selectProduct({perPage:perPage, page:page}))
     }, []);
+
+    const deleteProduct = async(e, id) => {
+        e.preventDefault();
+        let res = await dispatch(delProd({productId: id}))
+        if(res.payload.status == '200'){
+            alert("Deleted!");
+            window.location.reload(false);
+        }else{
+            alert('Try later!');
+        }
+    }
+
+    const setStatus = async(e, productId, statusId) => {
+        e.preventDefault();
+        let res = await dispatch(updateStatus({productId: productId, statusId: statusId}));
+        if(res.payload.status == '200'){
+            alert("Saved!");
+            window.location.reload(false);
+        }else{
+            alert('Try later!');
+        }
+    }
+
+    const goToPage = (e,pg) =>{
+        e.preventDefault();
+        dispatch(selectProduct({perPage:perPage, page:pg}));
+    }
+
+    const goToNextPage = (e) => {
+        e.preventDefault();
+        setPage(page+1);
+        console.log(page);
+        dispatch(selectProduct({perPage:perPage, page:page}));
+    }
 
     return(
         <div style={{padding:20}}>
@@ -57,19 +94,34 @@ const ProductsTabel = () => {
                                 <td>{subCategories.find(y => y.id ==x.subCategoryId).name}</td>
                                 <td>{x.sold}</td>
                                 <td>{x.quantity}</td>
-                                <td><input type='checkbox' defaultChecked={x.statusId === 1}></input></td>
-                                <td><input type='checkbox' defaultChecked={x.statusId === 4}></input></td>
+                                <td><input type='checkbox' onClick={(e) => {
+                                    if(e.target.checked){
+                                        setStatus(e, x.id, 1);
+                                        return;
+                                    }
+                                    setStatus(e, x.id, 2);
+                                }} defaultChecked={x.statusId === 1}></input></td>
+                                <td><input type='checkbox' onClick={(e) => {
+                                    if(e.target.checked){
+                                        setStatus(e, x.id, 4);
+                                        return;
+                                    }
+                                    setStatus(e, x.id, 1);
+                                }} defaultChecked={x.statusId === 4}></input></td>
                                 <td>
                                     <input type='button' onClick={() => {
                                     setModalShow(true);
                                     setSelectedProduct(x);
                                     }} value='Update' className="btn btn-warning"></input>
-                                <input type='button' value='Delete' className="btn btn-danger"></input></td>  
+                                <input type='button' value='Delete' onClick={(e) => {
+                                    deleteProduct(e, x.id);
+                                }} className="btn btn-danger"></input></td>  
                             </tr>                           
                         ))}
                     </tbody>    
                 </table>
-                <UpdateModal categories={categories} subcategories={subCategories} selectedproduct={selectedProduct} onHide={() => setModalShow(false)} show={modalShow}></UpdateModal>
+                <UpdateModal categories={categories} subcategories={subCategories} selectedproduct={selectedProduct} onHide={() => setModalShow(false)} show={modalShow}></UpdateModal> 
+                <PaginationControl></PaginationControl>
         </div>
     )
 }

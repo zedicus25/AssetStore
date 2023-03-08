@@ -58,11 +58,37 @@ export const updateProduct = createAsyncThunk(
     }
 );
 
+export const setStatus = createAsyncThunk(
+    'products/setStatus',
+    async(state) => {
+        const res = await api.setStatus(state);
+        return res;
+    }
+);
+
+export const deleteProduct = createAsyncThunk(
+    'products/deleteProduct',
+    async(state) => {
+        const res = await api.deleteProduct(state);
+        return res;
+    }
+);
+
+export const getProductCount = createAsyncThunk(
+    'products/getProductsCount',
+    async(state) => {
+        const res = await api.getProductsCount();
+        return res;
+    }
+);
+
+
 export const productsSlice = createSlice({
     name: 'products',
     initialState: {
         values : [],
         result: {},
+        hits: 0,
         status: 'idle'
     },
     extraReducers:(builder) => {
@@ -106,6 +132,21 @@ export const productsSlice = createSlice({
             }).addCase(updateProduct.fulfilled, (state, action) => {
                 state.status = 'idle';
                 return state;
+            }).addCase(deleteProduct.pending, (state) => {
+                state.status = 'loading';
+            }).addCase(deleteProduct.fulfilled, (state, action) => {
+                state.status = 'idle';
+                return state;
+            }).addCase(setStatus.pending, (state) => {
+                state.status = 'loading';
+            }).addCase(setStatus.fulfilled, (state, action) => {
+                state.status = 'idle';
+                return state;
+            }).addCase(getProductCount.pending, (state) => {
+                state.status = 'loading';
+            }).addCase(getProductCount.fulfilled, (state, action) => {
+                state.status = 'idle';
+                state.hits = action.payload;
             });
     }
 });
@@ -114,5 +155,7 @@ export const productsSlice = createSlice({
 export const selectValues = (state) => state.products.values;
 
 export const selectResult = (state) => state.products.result;
+
+export const selectHits = (state) => state.products.hits;
 
 export default productsSlice.reducer

@@ -10,14 +10,13 @@ import {addProduct as createProduct, selectResult as getResult} from "../../app/
 
 const AddProductPanel = () => {
     const navigate = useNavigate();
-    const initProduct = {productName: "", productPrice: 0, productImage: "", productQuantity: 0, soldCount: 0, categoryId: "", subCategoryId: ""};
+    const initProduct = {Name: "", Price: 0, Photo: "", Quantity: 0, Sold: 0, CategoryId: "", SubCategoryId: "", StatusId: 1};
     const [newProducts, setNewProduct] = useState(initProduct);
     const [productsError, setProductsError] = useState({});
     const subCategories = useSelector(getSubCategories);
     const categories = useSelector(getCateogries);
     const addingResult = useSelector(getResult);
     const dispatch = useDispatch();
-
     useEffect(() => {
         const managerInfo = token.getUserData();
         if(managerInfo.Manager === false)
@@ -34,23 +33,20 @@ const AddProductPanel = () => {
 
     const validate = (values) => {
         const errors = {};
-        if (!values.productName) {
+        if (!values.Name) {
             errors.productName = "Product name is required!";
         }
-        else if(!/^[a-zA-Z0-9+-]+$/.test(values.username)){
+        else if(!/^[a-zA-Z0-9+-]+$/.test(values.Name)){
             errors.productName = "Login must contains only letters, numbers and symbols +-";
         }
-        if (!values.productPrice) {
+        if (!values.Price) {
             errors.productPrice = "Products price is required!";
         } else if (!/^[0-9\.]+$/.test(values.productPrice)) {
             errors.productPrice = "Price can contains only numbers!";
         }
-        if (!values.productImage) {
-            errors.productImage = "Photo is required";
-        } else if (!/^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\/\w.-]*)*\/?$/.test(values.productImage)) {
-            errors.productImage = "Not url";
-        }
-        if(!values.productQuantity)
+        if (!values.Photo) {
+            errors.productImage = "Photo is required";}
+        if(!values.Quantity)
             errors.productQuantity = "Product quantity is required";
         else if(!/^[0-9]+$/.test(values.productQuantity))
             errors.productQuantity = "Quantity can contains only numbers!";
@@ -66,15 +62,11 @@ const AddProductPanel = () => {
         e.preventDefault();
         setProductsError(validate(newProducts));
         if(Object.keys(productsError).length === 0){
-            let res= await dispatch( createProduct({
-                productName: newProducts.productName,
-                productPrice: newProducts.productPrice,
-                productPhoto: newProducts.productImage,
-                categoryId: newProducts.categoryId,
-                subCategoryId: newProducts.subCategoryId,
-                quantity: newProducts.productQuantity,
-                sold : newProducts.soldCount
-            }));    
+            const formData = new FormData();
+            formData.append('files', newProducts.Photo);
+            newProducts.Photo = "";
+            formData.append('product',JSON.stringify(newProducts));
+            let res = await dispatch(createProduct(formData));    
             if(res.payload.status == '200'){
                 alert("Added!");
                 clearInputs();
@@ -102,32 +94,35 @@ const AddProductPanel = () => {
             <h5>Add new product</h5>
                 <div className="form-group mt-3">
                     <label>Product name</label>
-                    <input name='productName' value={newProducts.productName} onChange={(e) => handleChange(e)} className="form-control mt-1" type='text' placeholder='Name'></input>
+                    <input name='Name' value={newProducts.productName} onChange={(e) => handleChange(e)} className="form-control mt-1" type='text' placeholder='Name'></input>
                     <p className="error-text">{productsError.productName}</p>
                 </div>
                 <div className="form-group mt-3">
                     <label>Product price</label>
-                    <input name="productPrice" value={newProducts.productPrice} onChange={(e) => handleChange(e)} className="form-control mt-1" type='number' min='1' placeholder='Price'></input>
+                    <input name="Price" value={newProducts.productPrice} onChange={(e) => handleChange(e)} className="form-control mt-1" type='number' min='1' placeholder='Price'></input>
                     <p className="error-text">{productsError.productPrice}</p>
                 </div>
                 <div className="form-group mt-3">
-                    <label>Product image url</label>
-                    <input name="productImage" value={newProducts.productImage} onChange={(e) => handleChange(e)} className="form-control mt-1" type='url' placeholder='Image url'></input>
+                    <label>Product image</label>
+                    {/* <input name="productImage" value={newProducts.productImage} onChange={(e) => handleChange(e)} className="form-control mt-1" type='url' placeholder='Image url'></input> */}
+                    <input name='Photo'  onChange={(e) => {
+                        newProducts.Photo = e.target.files.item(0);
+                    }} type='file' className="form-control mt-1" accept="image/*"></input>
                     <p className="error-text">{productsError.productImage}</p>
                 </div>
                 <div className="form-group mt-3">
                     <label>Quantity count</label>
-                    <input name='productQuantity' value={newProducts.productQuantity} onChange={(e) => handleChange(e)}  className="form-control mt-1" min='1' type='number' placeholder='Quantity'></input>
+                    <input name='Quantity' value={newProducts.productQuantity} onChange={(e) => handleChange(e)}  className="form-control mt-1" min='1' type='number' placeholder='Quantity'></input>
                     <p className="error-text">{productsError.productQuantity}</p>
                 </div>
                 <div className="form-group mt-3">
                     <label>Sold count</label>
-                    <input name="soldCount" value={newProducts.soldCount} onChange={(e) => handleChange(e)}className="form-control mt-1" min='1' type='number' placeholder='Sold'></input>
+                    <input name="Sold" value={newProducts.soldCount} onChange={(e) => handleChange(e)}className="form-control mt-1" min='1' type='number' placeholder='Sold'></input>
                     <p className="error-text">{productsError.soldCount}</p>
                 </div>
                 <div className="form-group mt-3">
                     <label>Category</label>
-                    <select name='categoryId' onChange={(e) => handleChange(e)}className="form-select" id='categoryDrop'>
+                    <select name='CategoryId' onChange={(e) => handleChange(e)}className="form-select" id='categoryDrop'>
                         <option value='' disabled=''>Select</option>
                         {
                             categories.map((x, idx) => {
@@ -139,7 +134,7 @@ const AddProductPanel = () => {
                 </div>
                 <div className="form-group mt-3">
                     <label>Sub category</label>
-                    <select name='subCategoryId' onChange={(e) => handleChange(e)} className="form-select" id="subCategoryDrop">
+                    <select name='SubCategoryId' onChange={(e) => handleChange(e)} className="form-select" id="subCategoryDrop">
                         <option value='' disabled=''>Select</option>
                         {
                             subCategories.map((x, idx) => {
