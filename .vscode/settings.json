@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "undefined/subscriptions/bd7e659c-bfdc-4527-98b4-d9a1b4a5534f/resourceGroups/zed-resources/providers/Microsoft.Web/sites/NewAssetStore",
+    "appService.deploySubpath": "."
+}
