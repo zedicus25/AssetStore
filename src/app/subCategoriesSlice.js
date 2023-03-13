@@ -9,6 +9,27 @@ export const getAsync = createAsyncThunk(
         return res;
     }
 );
+export const addSubCategory = createAsyncThunk(
+    'subCategories/addSubCategory',
+    async (state) => {
+        const res = await api.addSubCategory(state);
+        return res;
+    }
+);
+export const updateSubCategory = createAsyncThunk(
+    'subCategories/updateSubCategory',
+    async (state) => {
+        const res = await api.updateSubCategory(state);
+        return res;
+    }
+);
+export const deleteSubCategory = createAsyncThunk(
+    'subCategories/deleteSubCategory',
+    async (state) => {
+        const res = await api.deleteSubCategory(state);
+        return res;
+    }
+);
 
 export const subCategoriesSlice = createSlice({
     name: 'subCategories',

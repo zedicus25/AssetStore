@@ -77,6 +77,21 @@ const getSubCategories = async () => {
     return await get(`${apiUrl}/SubCategory/subCategoryList`);
 }
 
+const addSubCategory = async (state) => {
+    return await post(`${apiUrl}/SubCategory/addSubCategory?subCategoryName=${state.subCategoryName}`);
+}
+const updateSubCategory = async(state) => {
+    let subCategory = {
+        id:state.id,
+        name: state.name
+    }
+    return await put(`${apiUrl}/SubCategory/updateCategory`, subCategory);
+}
+
+const deleteSubCategory = async(state) => {
+    return await del(`${apiUrl}/SubCategory/deleteSubCategory?subCategoryId=${state.subCategoryId}`);
+}
+
 //---------------categories---------------------
 const getCategories = async() => {
     return await get(`${apiUrl}/Category/categoryList`)
@@ -192,7 +207,10 @@ const methods = {
     getProductsCount: getProductsCount,
     addCategory: addCategory,
     updateCategory: updateCategory,
-    deleteCategory: deleteCategory
+    deleteCategory: deleteCategory,
+    addSubCategory: addSubCategory,
+    updateSubCategory: updateSubCategory,
+    deleteSubCategory: deleteSubCategory
 }
 
 export default methods;
