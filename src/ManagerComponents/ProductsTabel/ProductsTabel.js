@@ -5,15 +5,12 @@ import './ProductsTabel.css';
 import { useDispatch, useSelector } from "react-redux";
 import { getAsync as selectSubCategories, selectValues as getSubCategories } from "../../app/subCategoriesSlice";
 import { getAsync as selectCategories, selectValues as getCateogries } from "../../app/categoriesSlice";
-import {getProductsInPage as selectProduct, selectValues as getResult, deleteProduct as delProd, setStatus as updateStatus} from "../../app/productsSlice";
-import {UpdateModal} from '../UpdateProductModal/UpdateModal'
-import PaginationControl from '../PaginationControl/PaginationControl';
+import {getAsync as selectProduct, selectValues as getResult, deleteProduct as delProd, setStatus as updateStatus, searchProducts } from "../../app/productsSlice";
+import {UpdateProductModal} from '../UpdateProductModal/UpdateProductModal'
 
 
 
 const ProductsTabel = () => {
-    const [page, setPage] = useState(1);
-    const [perPage, setPerPage] = useState(10);
     const subCategories = useSelector(getSubCategories);
     const categories = useSelector(getCateogries);
     const assets = useSelector(getResult);
@@ -21,6 +18,7 @@ const ProductsTabel = () => {
     const [selectedProduct, setSelectedProduct] = useState({});
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [searchText ,setSearchText] = useState("");
 
     useEffect(() => {
         const managerInfo = token.getUserData();
@@ -28,7 +26,7 @@ const ProductsTabel = () => {
             navigate('/');
         dispatch(selectSubCategories());
         dispatch(selectCategories());
-        dispatch(selectProduct({perPage:perPage, page:page}))
+        dispatch(selectProduct())
     }, []);
 
     const deleteProduct = async(e, id) => {
@@ -39,6 +37,16 @@ const ProductsTabel = () => {
             window.location.reload(false);
         }else{
             alert('Try later!');
+        }
+    }
+
+    const searchAssets = () => {
+        if(searchText === ""){
+            dispatch(selectProduct());
+            return;
+        }
+        else{
+            dispatch(searchProducts({searchText: searchText}));
         }
     }
 
@@ -53,20 +61,12 @@ const ProductsTabel = () => {
         }
     }
 
-    const goToPage = (e,pg) =>{
-        e.preventDefault();
-        dispatch(selectProduct({perPage:perPage, page:pg}));
-    }
-
-    const goToNextPage = (e) => {
-        e.preventDefault();
-        setPage(page+1);
-        console.log(page);
-        dispatch(selectProduct({perPage:perPage, page:page}));
-    }
-
     return(
         <div style={{padding:20}}>
+            <div className='flexbox-row margintb-20'>
+                <input onChange={(e) => setSearchText(e.target.value)} className='form-control' type='text' placeholder='Search assets'></input>
+                <input onClick={() => searchAssets()} className='btn btn-outline-secondary' type='button' value='Search'></input>
+            </div>
              <table>
                     <thead>
                         <tr>
@@ -120,8 +120,7 @@ const ProductsTabel = () => {
                         ))}
                     </tbody>    
                 </table>
-                <UpdateModal categories={categories} subcategories={subCategories} selectedproduct={selectedProduct} onHide={() => setModalShow(false)} show={modalShow}></UpdateModal> 
-                <PaginationControl></PaginationControl>
+                <UpdateProductModal categories={categories} subcategories={subCategories} selectedproduct={selectedProduct} onHide={() => setModalShow(false)} show={modalShow}></UpdateProductModal> 
         </div>
     )
 }

@@ -120,7 +120,6 @@ const UpdateProductPanel = () => {
       <div className="flexbox-row">
             <ManagerNavBar></ManagerNavBar>
             <div style={{padding:20}}>
-              Update products panel
               <ProductsTabel></ProductsTabel>
             </div>
         </div>

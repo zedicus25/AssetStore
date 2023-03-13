@@ -10,6 +10,30 @@ export const getAsync = createAsyncThunk(
     }
 );
 
+export const addCategory = createAsyncThunk(
+    'categories/addCategory',
+    async (state) => {
+        const res = await api.addCategory(state);
+        return res;
+    }
+);
+
+export const updateCategory = createAsyncThunk(
+    'category/updateCategory',
+    async (state) => {
+        const res = await api.updateCategory(state);
+        return res;
+    }
+);
+
+export const deleteCategory = createAsyncThunk(
+    'category/deleteCategory',
+    async (state) => {
+        const res = await api.deleteCategory(state);
+        return res;
+    }
+);
+
 export const categoriesSlice = createSlice({
     name: 'categories',
     initialState: {
@@ -22,6 +46,11 @@ export const categoriesSlice = createSlice({
             }).addCase(getAsync.fulfilled, (state, action) => {
                 state.status = 'idle';
                 state.values = action.payload;
+            }).addCase(addCategory.pending, (state) => {
+                state.status = 'loading';
+            }).addCase(addCategory.fulfilled, (state, action) => {
+                state.status = 'idle';
+                return state;
             });
     }
 });

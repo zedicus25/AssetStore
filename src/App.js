@@ -11,6 +11,7 @@ import SearchPage from './Components/SearchPage/SearchPage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AddProductPanel from './ManagerComponents/AddProductsPanel/AddProductPanel';
 import UpdateProductPanel from './ManagerComponents/UpdateProductsPanel/UpdateProductPanel';
+import CategoriesManagmentPanel from './ManagerComponents/CategoriesManagmentPanel/CategoriesManagmentPanel';
 
 const App = () => {
   return(
@@ -26,6 +27,7 @@ const App = () => {
           <Route path='/manager' element={<MainManagerPage/>}></Route>
           <Route path='/manager/addproductpanel' element={<AddProductPanel/>}></Route>
           <Route path='/manager/updateproductpanel' element={<UpdateProductPanel/>}></Route>
+          <Route path='/manager/categoriesmanagmentpanel' element={<CategoriesManagmentPanel/>}></Route>
           <Route path='/admin' element={<MainAdminPage/>}></Route>
         </Routes>
     </BrowserRouter>

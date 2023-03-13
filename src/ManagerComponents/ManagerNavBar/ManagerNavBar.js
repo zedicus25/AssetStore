@@ -24,13 +24,7 @@ function ManagerNavBar(){
                 </li>
                 <li onClick={() => setCatControls(!catControls)}>
                     <div>
-                        <h5>Categories</h5>
-                        <div style={{display:catControls? 'block' : 'none'}}>
-                            <ul className="drop-menu">
-                                <li><Link to='/manager/addproductpanel'>Add categories</Link></li>
-                                <li><Link to='/manager/updateproductpanel'>Update categories</Link></li>
-                            </ul>
-                        </div>
+                        <h5><Link to='/manager/categoriesmanagmentpanel'>Update categories</Link></h5>
                     </div>
                 </li>
                 <li onClick={() => setSubCatControls(!subCatControls)}>

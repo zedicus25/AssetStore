@@ -70,6 +70,7 @@ const AddProductPanel = () => {
             if(res.payload.status == '200'){
                 alert("Added!");
                 clearInputs();
+                window.location.reload(false);
             }else{
                 alert('Try later!');
             }
@@ -148,7 +149,6 @@ const AddProductPanel = () => {
                     <input onClick={(e) => addProduct(e)} type='button' className="btn btn-primary" value='Add product'></input>
                 </div>
             </form>
-            <img style={{ margin:20, padding:10,border:"solid", width:700, height:500}} src={newProducts.productImage} alt='Product photo preview'></img>
             </div>
         </div>
     );

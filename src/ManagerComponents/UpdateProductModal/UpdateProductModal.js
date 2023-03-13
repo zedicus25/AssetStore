@@ -3,7 +3,7 @@ import Modal from 'react-bootstrap/Modal';
 import {useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateProduct as sendToDb } from '../../app/productsSlice';
-export const UpdateModal = (props) => {
+export const UpdateProductModal = (props) => {
 
     const initProduct = {id:0,productName: "", productPrice: 0, productImage: "", productQuantity: 0, soldCount: 0, categoryId: "", subCategoryId: "",statusId:1};
     const [newProducts, setNewProduct] = useState(initProduct);

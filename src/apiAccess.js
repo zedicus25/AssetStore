@@ -1,8 +1,8 @@
 import axios from "axios";
 import token from './jwtToken';
 
-const apiUrl = "https://assetstoreapi.azurewebsites.net/api";
-//const apiUrl = "http://wonof44260-001-site1.itempurl.com/api";
+//const apiUrl = "https://assetstoreapi.azurewebsites.net/api";
+const apiUrl = "http://wonof44260-001-site1.itempurl.com/api";
 //const apiUrl = "https://localhost:7167/api";
 
 
@@ -74,12 +74,28 @@ const put = async(url, data) => {
 
 //--------------subcategories----------------
 const getSubCategories = async () => { 
-    return await get(`${apiUrl}/Category/subCategoryList`);
+    return await get(`${apiUrl}/SubCategory/subCategoryList`);
 }
 
 //---------------categories---------------------
 const getCategories = async() => {
     return await get(`${apiUrl}/Category/categoryList`)
+}
+
+const addCategory = async(state) => {
+    return await post(`${apiUrl}/Category/addCategory?categoryName=${state.categoryName}`);
+}
+
+const updateCategory = async(state) => {
+    let category = {
+        id:state.id,
+        name: state.name
+    }
+    return await put(`${apiUrl}/Category/updateCategory`, category);
+}
+
+const deleteCategory = async(state) => {
+    return await del(`${apiUrl}/Category/deleteCategory?categoryId=${state.categoryId}`);
 }
 
 //-------------------products-------------------
@@ -94,7 +110,6 @@ const getPopularAssets = async () => {
 
 const getProductsInCategory = async (state) => {
     let res = await get(`${apiUrl}/Products/getProductsInCategory?categoryId=${state.categoryId}`);
-    console.log(res);
     return res;
 }
 
@@ -174,7 +189,10 @@ const methods = {
     updateProduct: updateProduct,
     deleteProduct : deleteProduct,
     setStatus: setStatus,
-    getProductsCount: getProductsCount
+    getProductsCount: getProductsCount,
+    addCategory: addCategory,
+    updateCategory: updateCategory,
+    deleteCategory: deleteCategory
 }
 
 export default methods;
