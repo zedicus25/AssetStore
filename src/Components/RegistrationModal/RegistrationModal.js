@@ -3,6 +3,7 @@ import Alert from 'react-bootstrap/Alert';
 import './RegistrationModal.css';
 import { useState } from 'react';
 import api from '../../apiAccess';
+import LoginModal from '../LoginModal/LoginModal';
 
 const RegistrationModal = (props) =>{
 
@@ -147,6 +148,13 @@ const RegistrationModal = (props) =>{
       <div className="d-grid gap-2 mt-3">
         <button type="button" onClick={(e) => signUp(e)} className="btn btn-primary">
           Sign Up
+        </button>
+      </div>
+      <div className="d-grid gap-2 mt-3">
+        <button type="button" onClick={(e) => {
+          props.onHide();
+        }} className="btn btn-link">
+          Login
         </button>
       </div>
     </div>

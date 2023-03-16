@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 
 import { useState } from 'react';
 import LoginModal from '../LoginModal/LoginModal';
-import RegistrationModal from '../RegistrationModal/RegistrationModal';
+
 
 
 
@@ -13,7 +13,7 @@ import RegistrationModal from '../RegistrationModal/RegistrationModal';
 
 function NavigationBar(props){
     const [loginModalShow, setLoginModalShow] = useState(false);
-    const [regModalShow, setRegModalShow] = useState(false);
+    
 
     return(<div>
         <SearchBlock></SearchBlock>
@@ -41,11 +41,11 @@ function NavigationBar(props){
             
         </nav>
         <div className='controls-btn'>
-            <Button className='margin-right-5' onClick={() => setLoginModalShow(true)} variant="outline-primary">Login</Button>
-            <Button  variant="outline-primary" onClick={() => setRegModalShow(true)} >Registration</Button>
+            <img onClick={() => setLoginModalShow(true)} className="icon" src="https://blobsassetstore.blob.core.windows.net/site/loginIcon.png" alt="login"></img>
+            <img  className="icon" src="https://blobsassetstore.blob.core.windows.net/site/cartIcon.png" alt="cart"></img>
         </div>
         <LoginModal show={loginModalShow} onHide={() => setLoginModalShow(false)} />
-        <RegistrationModal show={regModalShow} onHide={() => setRegModalShow(false)}></RegistrationModal>
+        
     
         <Outlet></Outlet>
     </div>);

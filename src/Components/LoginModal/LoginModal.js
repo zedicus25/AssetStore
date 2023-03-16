@@ -4,12 +4,14 @@ import Alert from 'react-bootstrap/Alert';
 import { useState } from 'react';
 import api from '../../apiAccess';
 import './LoginModal.css';
+import RegistrationModal from '../RegistrationModal/RegistrationModal';
 
   const LoginModal = (props) => {
     const initialValues = { login: "", password: "" };
-  const [formValues, setFormValues] = useState(initialValues);
-  const [formErrors, setFormErrors] = useState({});
+    const [formValues, setFormValues] = useState(initialValues);
+    const [formErrors, setFormErrors] = useState({});
     const [alertVisibility, setVisibility] = useState(false);
+    const [regModalShow, setRegModalShow] = useState(false);
 
     const handleChange = (e) => {
       const { name, value } = e.target;
@@ -58,6 +60,7 @@ import './LoginModal.css';
     }
 
     return(
+      <>
       <Modal
       {...props}
         size="lg"
@@ -105,14 +108,19 @@ import './LoginModal.css';
             Sign In
           </button>
         </div>
+        <div className="d-grid gap-2 mt-3">
+          <input onClick={(e) => {
+            setRegModalShow(true);
+          }} type='button' value="Registration" className='btn btn-link'></input>
+        </div>
       </div>
-    </form>
+     
+    </form> 
   </div>
         </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={props.onHide}>Close</Button>
-        </Modal.Footer>
       </Modal>
+      <RegistrationModal show={regModalShow} onHide={() => setRegModalShow(false)}></RegistrationModal>
+      </>
     );
   }
 

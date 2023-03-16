@@ -14,7 +14,7 @@ const PopularProducts = () => {
     }, []);
 
     return(
-        <div className='popular-products-wrap'>
+        <div>
             <h1>Popular assests:</h1>
             <div className='flexbox'>
                 {popularProducts.map((x, idx) => {
