@@ -8,6 +8,7 @@ import './SearchBlock.css'
     const navigate = useNavigate();
 
     const search = () => {
+        navigate('/');
         navigate('/searchPage', {state: {
             searchText: searchText
         }});

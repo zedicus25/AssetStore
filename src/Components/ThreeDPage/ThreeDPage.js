@@ -1,6 +1,6 @@
 import NavigationBar from '../NavigationBar/NavigationBar';
 import "./ThreeDPage.css";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import SubCategoriesFilter from '../SubCategoriesFilter/SubCategoriesFilter';
 import ProductsControl from '../ProductsControl/ProductsControl';
 import { useDispatch, useSelector } from 'react-redux';
