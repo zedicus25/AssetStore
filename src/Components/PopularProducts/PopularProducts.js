@@ -15,7 +15,7 @@ const PopularProducts = () => {
 
     return(
         <div>
-            <h1>Popular assests:</h1>
+            <h1 className='popular-products-title'>Popular assests:</h1>
             <div className='flexbox'>
                 {popularProducts.map((x, idx) => {
                     return <ProductCard key={idx} productId={`productdId=${x.id}`} productImg={x.photo} productName={x.name} productPrice={x.price}></ProductCard>

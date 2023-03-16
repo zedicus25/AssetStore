@@ -7,9 +7,22 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+html{
+  height: 100%;
+  background-color: #EEEEEE;
+}
+
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+
+#root{
+
+  background-color: #EEEEEE;
+  
 }
 
 .main-padding {

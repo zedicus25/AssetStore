@@ -14,25 +14,16 @@ class ProductCard extends Component{
     if(token == null || token == '')
         alert("Log in or register to purchase");
 }
-
-
     render(){
-        return (
-            <Card className='card' id={this.props['productId']}>
-      <Card.Img variant="top" style={{width:'100%', height:'100%',}} src={this.props['productImg']} />
-      <Card.Body>
-        <Card.Title className='name-label'>{this.props['productName']}</Card.Title>
-        <div className='space-between'>
-            <div className='price-label'>${this.props['productPrice']}</div>
-            <Button variant="link" onClick={() => this.buyProduct()}>
-                <img className='cart-icon' src='https://cdn-icons-png.flaticon.com/512/1170/1170678.png'></img>
-                Add to cart
-            </Button>
-        </div>
-       
-      </Card.Body>
-    </Card>
-        );
+        return(<div className="product-card">
+        <img src={this.props['productImg']} alt={this.props['productName']}/>
+        <div className="product-details">
+        <h3 className="product-title">{this.props['productName']}</h3>
+        <span className="product-price">${this.props['productPrice']}</span>
+        <button className="add-to-cart-btn">Add to Cart</button>
+    </div>
+</div>)
+
     }
 }
 

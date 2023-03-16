@@ -16,10 +16,10 @@ import './SearchBlock.css'
 
     return(
         <div className='flexbox-row'>
-        <h2 className='padding-top-15'>Asset shop</h2>
+        <h2 className='padding-top-15 store-name'>Asset shop</h2>
         <div className='flexbox-row margin-top-15'>
-            <input onChange={(e) => setSearchText(e.target.value)} className='input form-control' type='text' placeholder='Search assets'></input>
-            <input onClick={() => search()}  className='btn btn-outline-secondary' type='button' value='Search'></input>
+            <input onChange={(e) => setSearchText(e.target.value)} className='input search-inp' type='text' placeholder='Search assets'></input>
+            <input onClick={() => search()}  className='search-btn' type='button' value='Search'></input>
         </div>
     </div>
     );
