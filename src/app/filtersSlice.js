@@ -4,8 +4,6 @@ export const filterSlice = createSlice({
     name:'filter',
     initialState: {
         values:{
-            page: 1,
-            perPage: 10,
             category: null,
             subCategories: [],
             minPrice: null,
@@ -16,24 +14,16 @@ export const filterSlice = createSlice({
         setCategory:(state, action) => {
             state.values.category = action.payload;
         },   
-
-        setPage:(state, action) => {
-            state.page = action.payload;
-        },
-        setPerPage:(state, action) => {
-            state.values.perPage = action.payload;
-        },
-
-        incrementPage: (state) => {
-            state.values.page += 1;
-        },
-        
-        decrementPage: (state) => {
-            state.page -= 1;
-        },
         
         setSubCategories: (state, action) => {
-            state.values.subCategories = action.payload.filter(item => item.isChecked);
+            
+            if(action.payload.checked)
+                state.values.subCategories.push(action.payload.id);
+            else{
+                let index = state.values.subCategories.indexOf(action.payload.id);
+                state.values.subCategories.splice(index,1);
+            }
+
         },
         setMinPrice: (state, action) => {
             state.values.minPrice = action.payload;
@@ -45,10 +35,8 @@ export const filterSlice = createSlice({
     }
 });
 
-export const { setCategory, setPage, setPerPage, incrementPage, decrementPage, setMinPrice, setMaxPrice } = filterSlice.actions
+export const { setSubCategories,setCategory, setMinPrice, setMaxPrice } = filterSlice.actions
 
-export const selectPage = (state) => state.filter.values.page;
-export const selectPerPage = (state) => state.filter.values.perPage;
 export const selectMinPrice = (state) => state.filter.values.minPrice;
 export const selectMaxPrice = (state) => state.filter.values.maxPrice;
 export const selectSubCategories = (state) => state.filter.values.subCategories;
