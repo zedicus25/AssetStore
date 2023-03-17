@@ -13,6 +13,7 @@ import AddProductPanel from './ManagerComponents/AddProductsPanel/AddProductPane
 import UpdateProductPanel from './ManagerComponents/UpdateProductsPanel/UpdateProductPanel';
 import CategoriesManagmentPanel from './ManagerComponents/CategoriesManagmentPanel/CategoriesManagmentPanel';
 import SubCategoriesManagmentPanel from './ManagerComponents/SubCategoriesManagmentPanel/SubCategoriesManagmentPanel';
+import AccountPage from './Components/AccountPage/AccountPage';
 
 const App = () => {
   return(
@@ -26,6 +27,7 @@ const App = () => {
           <Route path='/vfxpage' element={<VFXPage/>}></Route>
           <Route path='/searchPage' element={<SearchPage/>}></Route>
           <Route path='/manager' element={<MainManagerPage/>}></Route>
+          <Route path='/account' element={<AccountPage></AccountPage>}></Route>
           <Route path='/manager/addproductpanel' element={<AddProductPanel/>}></Route>
           <Route path='/manager/updateproductpanel' element={<UpdateProductPanel/>}></Route>
           <Route path='/manager/categoriesmanagmentpanel' element={<CategoriesManagmentPanel/>}></Route>

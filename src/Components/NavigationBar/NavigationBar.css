@@ -48,6 +48,7 @@ a:hover{
 }
 
 .controls-btn{
+    display: flex;
     float: right;
     margin-top: -65px;
     padding-right: 15px;
@@ -60,6 +61,18 @@ a:hover{
 .icon{
     width: 40px;
     filter:opacity(70%);
+}
+
+.nick{
+    margin-top: 7px;
+    text-decoration: none;
+    font-weight: 600;
+    color: #393E46;
+}
+
+.nick:hover{
+    color: #929AAB;
+    transition: all 0.3s ease;
 }
 
 

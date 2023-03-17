@@ -5,7 +5,7 @@ import PopularProducts from '../PopularProducts/PopularProducts';
 const MainPage = () => {
   return(
     <div className='main-padding'>
-      <NavigationBar ></NavigationBar>
+      <NavigationBar></NavigationBar>
       <CarouselComponet></CarouselComponet>
       <PopularProducts></PopularProducts>   
   </div>

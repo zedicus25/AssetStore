@@ -1,7 +1,7 @@
 import {Link, Outlet} from 'react-router-dom'
 import './NavigationBar.css';
 import SearchBlock from '../SearchBlock/SearchBlock';
-import Button from 'react-bootstrap/Button';
+import token from '../../jwtToken';
 
 import { useState } from 'react';
 import LoginModal from '../LoginModal/LoginModal';
@@ -41,6 +41,7 @@ function NavigationBar(props){
             
         </nav>
         <div className='controls-btn'>
+            <Link to='/account' className='nick'>{token.getUserData().username === "" ? "" : token.getUserData().username}</Link>
             <img onClick={() => setLoginModalShow(true)} className="icon login-icon" src="https://blobsassetstore.blob.core.windows.net/site/loginIcon.png" alt="login"></img>
             <img  className="icon" src="https://blobsassetstore.blob.core.windows.net/site/cartIcon.png" alt="cart"></img>
         </div>
