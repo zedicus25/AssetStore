@@ -3,7 +3,6 @@ import Alert from 'react-bootstrap/Alert';
 import './RegistrationModal.css';
 import { useState } from 'react';
 import api from '../../apiAccess';
-import LoginModal from '../LoginModal/LoginModal';
 
 const RegistrationModal = (props) =>{
 

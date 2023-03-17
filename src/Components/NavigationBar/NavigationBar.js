@@ -5,6 +5,9 @@ import token from '../../jwtToken';
 
 import { useState } from 'react';
 import LoginModal from '../LoginModal/LoginModal';
+import { useSelector } from 'react-redux';
+import { selectProducts } from '../../app/busket';
+import BusketModal from '../BusketModal/BusketModal';
 
 
 
@@ -13,8 +16,10 @@ import LoginModal from '../LoginModal/LoginModal';
 
 function NavigationBar(props){
     const [loginModalShow, setLoginModalShow] = useState(false);
+    const [busketModal, setbusketModalShow] = useState(false);
     
 
+    const prods = useSelector(selectProducts);
     return(<div>
         <SearchBlock></SearchBlock>
         <nav className='justify-center'>
@@ -43,10 +48,10 @@ function NavigationBar(props){
         <div className='controls-btn'>
             <Link to='/account' className='nick'>{token.getUserData().username === "" ? "" : token.getUserData().username}</Link>
             <img onClick={() => setLoginModalShow(true)} className="icon login-icon" src="https://blobsassetstore.blob.core.windows.net/site/loginIcon.png" alt="login"></img>
-            <img  className="icon" src="https://blobsassetstore.blob.core.windows.net/site/cartIcon.png" alt="cart"></img>
+            <img onClick={() => setbusketModalShow(true)}  className="icon" src="https://blobsassetstore.blob.core.windows.net/site/cartIcon.png" alt="cart"></img>
         </div>
         <LoginModal show={loginModalShow} onHide={() => setLoginModalShow(false)} />
-        
+        <BusketModal show={busketModal} onHide={() => setbusketModalShow(false)}></BusketModal>
     
         <Outlet></Outlet>
     </div>);

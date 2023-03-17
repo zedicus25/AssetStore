@@ -19,13 +19,13 @@ class ProductsControl extends Component {
         if(this.props.subCategoriesFilter.length <= 0){
             cardsCount = this.props.products.length;
             cards.push(this.props.products.slice((this.state.page-1)*12, ((this.state.page-1)*10)+12).map((x, idx) => {
-                return <ProductCard key={`product=${idx}`} productId={`productdId=${x.id}`} productImg={x.photo} productName={x.name} productPrice={x.price}></ProductCard>}));
+                return <ProductCard key={`product=${idx}`} productId={`${x.id}`} productImg={x.photo} productName={x.name} productPrice={x.price}></ProductCard>}));
                 lastPage = Math.round(cardsCount / this.state.perPage);
         }
         else{
             cardsCount = this.props.products.filter(p => this.props.subCategoriesFilter.some(c => c === p.subCategoryId)).length;
             cards.push(this.props.products.filter(p => this.props.subCategoriesFilter.some(c => c === p.subCategoryId)).slice((this.state.page-1)*12, ((this.state.page-1)*10)+12).map((x, idx) => {
-                return <ProductCard key={`product=${idx}`} productId={`productdId=${x.id}`} productImg={x.photo} productName={x.name} productPrice={x.price}></ProductCard>
+                return <ProductCard key={`product=${idx}`} productId={`${x.id}`} productImg={x.photo} productName={x.name} productPrice={x.price}></ProductCard>
             }));
             lastPage = Math.round(cardsCount / this.state.perPage);
         }
