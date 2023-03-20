@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setBusket } from '../../app/busket';
+import { setBusket } from '../../app/busketSlice';
 import CarouselComponet from '../CarouselComponent/CarouselComponent';
 import NavigationBar from '../NavigationBar/NavigationBar';
 import PopularProducts from '../PopularProducts/PopularProducts';

@@ -3,10 +3,12 @@ import { createSlice } from "@reduxjs/toolkit";
 export const busketSlice = createSlice({
     name:'busket',
     initialState:{
-        products: []
+        products: new Array()
     },
     reducers: {
         addProduct:(state, action) => {
+            if(state.products == null)
+                state.products = [];
             let prod = {
                 productId: action.payload.productId,
                 productName: action.payload.productName, 
@@ -53,17 +55,23 @@ export const busketSlice = createSlice({
         },
         setBusket:(state, action) => {
             state.products = action.payload.products;
+        },
+        clearBusket:(state, action) => {
+            state.products = [];
+            localStorage.setItem('busket',"");
         }
       
     }
 });
 
-export const { addProduct,removeProduct, setBusket, increaseProductCount, decreaseProductCount, setItemCount } = busketSlice.actions;
+export const { addProduct,removeProduct, setBusket, increaseProductCount, decreaseProductCount, setItemCount, clearBusket } = busketSlice.actions;
 
 export const selectProducts = (state) => state.busket.products;
 export const selectTotalPrice = (state) => {
     let price = 0;
-    state.busket.products.map(x => price += x.productPrice * x.productCount);
+    if(state.busket.products){
+        state.busket.products.map(x => price += x.productPrice * x.productCount);
+    }
     return parseFloat(price).toFixed(2);
 }
 

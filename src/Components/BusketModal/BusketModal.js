@@ -1,13 +1,37 @@
+import { useEffect } from 'react';
 import { ModalFooter } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
-import { useSelector } from 'react-redux';
-import { selectProducts, selectTotalPrice } from '../../app/busket';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearBusket, selectProducts, selectTotalPrice } from '../../app/busketSlice';
+import { createOrder } from '../../app/ordersSlice';
 import CartItem from '../CartItem/CartItem';
 import "./BusketModal.css"
+import token from '../../jwtToken';
+import { useNavigate } from 'react-router-dom';
 
 const BusketModal = (props) => {
     const products = useSelector(selectProducts);
     const total = useSelector(selectTotalPrice);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+
+    const buyProducts = async() => {
+      if(token.getToken() == null){
+        alert("You must be authorized!");
+        return;
+      }
+        
+
+      let res = await dispatch(createOrder({products: products, totalPrice: total}));
+      if(res.payload.request.status == '200')
+      {
+        await dispatch(clearBusket());
+        props.onHide();
+        navigate('/account');
+      }
+    }
+
     return(
         <Modal
         {...props}
@@ -20,11 +44,15 @@ const BusketModal = (props) => {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body style={{backgroundColor:'#eeeeee'}}>
-            {products.map((x, idx) => {
+            {products?.map((x, idx) => {
             return <CartItem key={idx} productId={x.productId} productName={x.productName} productPrice={x.productPrice} productImage={x.productImage} productCount={x.productCount}></CartItem>})}
              <div className='busket-foot'>
               <p className='total-price'>Total: ${total}</p>
-              <input className='order-btn' type='button' value='Order'></input>
+              <div>
+              <input onClick={() => buyProducts()} className='order-btn' type='button' value='Buy'></input>
+              <input onClick={() => dispatch(clearBusket())} className='clear-btn' type='button' value='Clear'></input>
+              </div>
+              
             </div>
           </Modal.Body>
         </Modal>

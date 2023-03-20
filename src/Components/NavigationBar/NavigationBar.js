@@ -5,21 +5,12 @@ import token from '../../jwtToken';
 
 import { useState } from 'react';
 import LoginModal from '../LoginModal/LoginModal';
-import { useSelector } from 'react-redux';
-import { selectProducts } from '../../app/busket';
 import BusketModal from '../BusketModal/BusketModal';
-
-
-
-
-
 
 function NavigationBar(props){
     const [loginModalShow, setLoginModalShow] = useState(false);
     const [busketModal, setbusketModalShow] = useState(false);
     
-
-    const prods = useSelector(selectProducts);
     return(<div>
         <SearchBlock></SearchBlock>
         <nav className='justify-center'>

@@ -3,7 +3,8 @@ import categoriesSlice from "./categoriesSlice";
 import productsReducer from "./productsSlice";
 import filterReduser from "./filtersSlice";
 import subCategoriesReducer from "./subCategoriesSlice";
-import busketSlice  from "./busket";
+import busketSlice  from "./busketSlice";
+import ordersSlice from "./ordersSlice";
 
 export const store = configureStore({
     reducer:{
@@ -11,6 +12,7 @@ export const store = configureStore({
         products: productsReducer,
         categories: categoriesSlice,
         filter: filterReduser,
-        busket: busketSlice
+        busket: busketSlice,
+        orders: ordersSlice
     }
 });

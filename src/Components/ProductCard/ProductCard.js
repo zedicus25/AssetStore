@@ -2,7 +2,7 @@
 import './ProductCard.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch } from 'react-redux';
-import { addProduct } from '../../app/busket';
+import { addProduct } from '../../app/busketSlice';
 
 const ProductCard = (props) => {
 

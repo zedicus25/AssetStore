@@ -1,8 +1,8 @@
 import axios from "axios";
 import token from './jwtToken';
 
-//const apiUrl = "https://assetstoreapi.azurewebsites.net/api";
-const apiUrl = "http://wonof44260-001-site1.itempurl.com/api";
+const apiUrl = "https://assetstoreapi.azurewebsites.net/api";
+//const apiUrl = "http://wonof44260-001-site1.itempurl.com/api";
 //const apiUrl = "https://localhost:7167/api";
 
 
@@ -190,6 +190,16 @@ const signUp = async(login, email, password) => {
     return await post(`${apiUrl}/Authentication/regUser`, {Email:email,Password: password, UserName: login});
 }
 
+//--------------------orders---------------------
+const addOrder = async(state) => {
+    let productsUrl = '';
+    state.products.map(x => {
+        if(x.productId)
+            productsUrl += `&productsId=${x.productId.substring(x.productId.indexOf('=')+1)}`
+    });
+    return await post(`${apiUrl}/Orders/createOrder?userName=${token.getUserData().username}&totalPrice=${state.totalPrice}${productsUrl}`)
+}
+
 const methods = {
     getSubCategories: getSubCategories,
     getAllAssets: getAllAssets,
@@ -210,7 +220,8 @@ const methods = {
     deleteCategory: deleteCategory,
     addSubCategory: addSubCategory,
     updateSubCategory: updateSubCategory,
-    deleteSubCategory: deleteSubCategory
+    deleteSubCategory: deleteSubCategory,
+    addOrder: addOrder
 }
 
 export default methods;

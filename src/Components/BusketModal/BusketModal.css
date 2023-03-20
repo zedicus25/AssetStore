@@ -21,10 +21,29 @@
     font-size: 16px;
     font-weight: 600;
     transition: all 0.3s ease;
+    margin: 5px;
   }
   
   .order-btn:hover {
     background-color: #fff;
     color: #4CAF50;
     border: 3px solid #4CAF50;
+  }
+
+  .clear-btn{
+    background-color: #ff5248;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .clear-btn:hover {
+    background-color: #fff;
+    color: #ff5248;
+    border: 3px solid #ff5248;
   }

@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { decreaseProductCount, increaseProductCount, removeProduct, setItemCount } from "../../app/busket";
+import { decreaseProductCount, increaseProductCount, removeProduct, setItemCount } from "../../app/busketSlice";
 import "./CartItem.css"
 const CartItem = (props) => {
 
