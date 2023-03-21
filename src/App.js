@@ -14,6 +14,8 @@ import UpdateProductPanel from './ManagerComponents/UpdateProductsPanel/UpdatePr
 import CategoriesManagmentPanel from './ManagerComponents/CategoriesManagmentPanel/CategoriesManagmentPanel';
 import SubCategoriesManagmentPanel from './ManagerComponents/SubCategoriesManagmentPanel/SubCategoriesManagmentPanel';
 import AccountPage from './Components/AccountPage/AccountPage';
+import PaymentPage from './Components/AccountPage/PaymentPage';
+import BuyedAssets from './Components/AccountPage/BuyedAssets';
 
 const App = () => {
   return(
@@ -28,6 +30,8 @@ const App = () => {
           <Route path='/searchPage' element={<SearchPage/>}></Route>
           <Route path='/manager' element={<MainManagerPage/>}></Route>
           <Route path='/account' element={<AccountPage></AccountPage>}></Route>
+          <Route path='/account/payment' element={<PaymentPage></PaymentPage>}></Route>
+          <Route path='/account/buyedassets' element={<BuyedAssets></BuyedAssets>}></Route>
           <Route path='/manager/addproductpanel' element={<AddProductPanel/>}></Route>
           <Route path='/manager/updateproductpanel' element={<UpdateProductPanel/>}></Route>
           <Route path='/manager/categoriesmanagmentpanel' element={<CategoriesManagmentPanel/>}></Route>

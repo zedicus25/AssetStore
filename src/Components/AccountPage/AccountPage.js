@@ -1,17 +1,19 @@
 
-import { useNavigate } from 'react-router-dom';
-import token from '../../jwtToken';
+
+import './AccountPage.css';
+
+import UserNavigationPage from './UserNavigationBar';
 
 const AccountPage = () => {
 
-    const navigate = useNavigate();
+    
+
+
 return(
-    <div>
-        <input type='button' value="Log out" onClick={(e) => {
-             token.logOut();
-             navigate('/');
-        }}></input>
+    <div className='user-main-page'>
+        <UserNavigationPage></UserNavigationPage>
     </div>
+
 );
 };
 export default AccountPage;

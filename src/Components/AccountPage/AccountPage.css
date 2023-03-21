@@ -1,0 +1,141 @@
+.user-nav {
+    background-color: #333;
+    color: #fff;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+  }
+  
+  .user-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .user-nav li {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .user-nav a {
+    color: #fff;
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+  }
+  
+  .user-nav a:hover {
+    background-color: #555;
+    text-decoration: underline;
+  }
+  
+  .user-nav input.logout-btn {
+    padding: 10px;
+    margin: 10px;
+    background-color: #ff5248;
+    color: #eee;
+    border: none;
+    border-radius: 5px;
+    padding: 4px 8px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-bottom: 5px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+  }
+  
+  .user-nav input.logout-btn:hover {
+    background-color: #333;
+    color: #ff5248;
+    border: 2px solid #ff5248;
+  }
+  .user-main-page{
+    display: flex;
+    flex-direction: row;
+  }
+
+  .page{
+    margin-left: 210px;
+  }
+
+  .empty-cart {
+    background-color: #f7f7f7;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    margin: 20px auto;
+    max-width: 400px;
+  }
+  
+  .empty-cart p {
+    color: #555;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+  }
+  .card-input{
+    width: 700px;
+  }
+  .card-input label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    font-size: 16px;
+  }
+  
+  .card-input input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .card-input input:focus {
+    outline: none;
+    border-color: #4c9fff;
+  }
+  
+  .card-input .expiry-input {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .card-input .expiry-input input {
+    flex-grow: 1;
+  }
+  
+  .card-input .expiry-input span {
+    margin: 0 10px;
+  }
+    
+  .payment-wrap {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .total-price-pay{
+    margin: 0px;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.pay-foot{
+  display: flex;
+    flex-direction: column;
+}
+
+.width-600{
+  width: 600px;
+}
+
+.error-text{
+  font-size: 14px;
+  color: rgb(252, 40, 40);
+  font-weight: 600;
+}
