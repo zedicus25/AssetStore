@@ -82,11 +82,20 @@ export const getProductCount = createAsyncThunk(
     }
 );
 
+export const getBuyedProducts = createAsyncThunk(
+    'products/getBuyedProducts',
+    async(state) => {
+        const res = await api.getBuyedProducts(state);
+        return res;
+    }
+);
+
 
 export const productsSlice = createSlice({
     name: 'products',
     initialState: {
         values : [],
+        buyedProducts: [],
         result: {},
         hits: 0,
         status: 'idle'
@@ -147,6 +156,11 @@ export const productsSlice = createSlice({
             }).addCase(getProductCount.fulfilled, (state, action) => {
                 state.status = 'idle';
                 state.hits = action.payload;
+            }).addCase(getBuyedProducts.pending, (state) => {
+                state.status = 'loading';
+            }).addCase(getBuyedProducts.fulfilled, (state, action) => {
+                state.status = 'idle';
+                state.buyedProducts = action.payload;
             });
     }
 });
@@ -157,5 +171,7 @@ export const selectValues = (state) => state.products.values;
 export const selectResult = (state) => state.products.result;
 
 export const selectHits = (state) => state.products.hits;
+
+export const selectBuyedProducts = (state) => state.products.buyedProducts;
 
 export default productsSlice.reducer

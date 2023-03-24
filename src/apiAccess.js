@@ -180,6 +180,10 @@ const getProductsCount = async() => {
     return await get(`${apiUrl}/Products/getProductCount`);
 }
 
+const getBuyedProducts = async(state) => {
+    return await get(`${apiUrl}/Products/buyedProducts?userLogin=${state.userLogin}`);
+}
+
 
 //--------------------authorization--------------------
 const signIn = async(login, password) => {
@@ -221,7 +225,8 @@ const methods = {
     addSubCategory: addSubCategory,
     updateSubCategory: updateSubCategory,
     deleteSubCategory: deleteSubCategory,
-    addOrder: addOrder
+    addOrder: addOrder,
+    getBuyedProducts: getBuyedProducts
 }
 
 export default methods;

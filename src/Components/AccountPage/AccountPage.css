@@ -139,3 +139,58 @@
   color: rgb(252, 40, 40);
   font-weight: 600;
 }
+
+.asset-card {
+  margin: 10px;
+  width: 900px;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.asset-card img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  margin-right: 20px;
+  border-radius: 5px;
+}
+
+.asset-details {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.asset-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.download-button {
+  padding: 10px 20px;
+  background-color: #4c9fff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.download-button:hover {
+  background-color: #3887c6;
+}
+
+.buyedAsset-panel{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
