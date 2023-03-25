@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import {  useNavigate } from "react-router-dom";
 import token from '../../jwtToken';
+import AdminNavigationBar from "../AdminNavigationBar/AdminNavigationBar";
 
 const MainAdminPage = () => {
   const navigate = useNavigate();
@@ -11,7 +12,9 @@ const MainAdminPage = () => {
       navigate('/');
   });
     return(
-      <div>Admin Page</div>
+      <div className="admin-main-page">
+        <AdminNavigationBar></AdminNavigationBar>
+      </div>
     );
   }
   export default MainAdminPage;

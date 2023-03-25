@@ -16,6 +16,8 @@ import SubCategoriesManagmentPanel from './ManagerComponents/SubCategoriesManagm
 import AccountPage from './Components/AccountPage/AccountPage';
 import PaymentPage from './Components/AccountPage/PaymentPage';
 import BuyedAssets from './Components/AccountPage/BuyedAssets';
+import UpdateManagerPage from './AdminComponents/UpdateManagerPage/UpdateManagerPage';
+import UpdateAdminPage from './AdminComponents/UpdateAdminPage/UpdateAdminPage';
 
 const App = () => {
   return(
@@ -37,6 +39,8 @@ const App = () => {
           <Route path='/manager/categoriesmanagmentpanel' element={<CategoriesManagmentPanel/>}></Route>
           <Route path='/manager/subcategoriesmanagmentPanel' element={<SubCategoriesManagmentPanel/>}></Route>
           <Route path='/admin' element={<MainAdminPage/>}></Route>
+          <Route path='/admin/managerspage' element={<UpdateManagerPage></UpdateManagerPage>}></Route>
+          <Route path='/admin/adminspage' element={<UpdateAdminPage></UpdateAdminPage>}></Route>
         </Routes>
     </BrowserRouter>
   );

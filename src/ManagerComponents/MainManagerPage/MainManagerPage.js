@@ -11,7 +11,7 @@ const MainManagerPage = () => {
     const managerInfo = token.getUserData();
     if(managerInfo.Manager === false)
       navigate('/');
-  });
+  },[]);
     return(
       <div className="flexbox-row">
         <ManagerNavBar></ManagerNavBar>

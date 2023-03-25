@@ -1,21 +1,22 @@
 import { Link } from 'react-router-dom';
-import './AccountPage.css'
+import './AdminNavigationBar.css'
 import token from '../../jwtToken';
 import { useNavigate } from 'react-router-dom';
 
-const UserNavigationPage = () => {
+const AdminNavigationBar = () => {
 
     const navigate = useNavigate();
+
 
     const logOut = () => {
         token.logOut();
         navigate('/');
     }
     return (
-        <div className="user-nav">
+        <div className="admin-nav">
             <ul>
-                <li><Link to='/account/payment'>Payment</Link></li>
-                <li><Link to="/account/buyedassets">You orders</Link></li>
+                <li><Link to='/admin/managerspage'>Managers</Link></li>
+                <li><Link to="/admin/adminspage">Admins</Link></li>
                 <li><input onClick={() => navigate('/')} className='logout-btn' type='button' value='Back'></input></li>
                 <li><input onClick={() => logOut()} className='logout-btn' type='button' value='Exit'></input></li>
             </ul>
@@ -23,4 +24,4 @@ const UserNavigationPage = () => {
 
     );
 }
-export default UserNavigationPage;
+export default AdminNavigationBar;
