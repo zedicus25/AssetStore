@@ -177,6 +177,7 @@
   padding: 10px 20px;
   background-color: #4c9fff;
   color: #fff;
+  font-weight: 600;
   border: none;
   border-radius: 5px;
   font-size: 16px;
@@ -192,5 +193,44 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.search-input-buy {
+  width: 500px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 20px;
+  outline: none;
+}
+
+.search-input-buy:focus {
+  border-color: #4c9fff;
+}
+
+.search-button-buy {
+  background-color: #4c9fff;
+  color: #fff;
+  border: none;
+  margin: 8px 0;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-button-buy:hover {
+  background-color: #2f75b5;
+}
+
+.search-buyed{
+  display: flex;
+  flex-direction: row;
 }
 
