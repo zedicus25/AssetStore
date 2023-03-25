@@ -30,7 +30,7 @@ const BuyedAssets = () => {
                     <input className="search-input-buy" onChange={(e) => setSearch(e.target.value)} type='search' placeholder="Search assets"></input>
                     
                 </div>
-                {buyedProducts?.filter(x => x.name.toLowerCase().includes(search.toLowerCase())).map((x, idx) => {
+                {buyedProducts?.filter(x => x?.name.toLowerCase().includes(search.toLowerCase())).map((x, idx) => {
                     return <BuyedItemCard key={idx} productLink={x.linkToFile} productId={x.id} productName={x.name}  productImage={x.photo}></BuyedItemCard>
                 })}
             </div>
