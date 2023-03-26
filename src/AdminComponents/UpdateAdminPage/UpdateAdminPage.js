@@ -3,6 +3,8 @@ import './UpdateAdminPage.css'
 import token from '../../jwtToken';
 import { useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
+import CreateAdminComponent from '../CreateAdminComponent/CreateAdminComponent';
+import AdminTabel from '../AdminTabel/AdminTabel';
 
 const UpdateAdminPage = () => {
 
@@ -17,7 +19,8 @@ const UpdateAdminPage = () => {
         <>
         <AdminNavigationBar></AdminNavigationBar>
          <div className='page'>
-            Some
+            <CreateAdminComponent></CreateAdminComponent>
+            <AdminTabel></AdminTabel>
         </div>
         </>
        

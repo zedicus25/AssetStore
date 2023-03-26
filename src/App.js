@@ -18,6 +18,7 @@ import PaymentPage from './Components/AccountPage/PaymentPage';
 import BuyedAssets from './Components/AccountPage/BuyedAssets';
 import UpdateManagerPage from './AdminComponents/UpdateManagerPage/UpdateManagerPage';
 import UpdateAdminPage from './AdminComponents/UpdateAdminPage/UpdateAdminPage';
+import UpdateUsersPage from './AdminComponents/UpdateUsersPage/UpdateUsersPage';
 
 const App = () => {
   return(
@@ -41,6 +42,7 @@ const App = () => {
           <Route path='/admin' element={<MainAdminPage/>}></Route>
           <Route path='/admin/managerspage' element={<UpdateManagerPage></UpdateManagerPage>}></Route>
           <Route path='/admin/adminspage' element={<UpdateAdminPage></UpdateAdminPage>}></Route>
+          <Route path='/admin/userspage' element={<UpdateUsersPage></UpdateUsersPage>}></Route>
         </Routes>
     </BrowserRouter>
   );

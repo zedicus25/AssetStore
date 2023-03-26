@@ -1,12 +1,11 @@
 import AdminNavigationBar from '../AdminNavigationBar/AdminNavigationBar';
-import './UpdateManagerPage.css'
+import './UpdateUsersPage.css'
 import token from '../../jwtToken';
 import { useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-import CreateManagerComponent from '../CreateManagerComponent/CreateManagerComponent';
-import ManagerTabel from '../ManagerTabel/ManagerTabel';
+import UsersTabel from '../UsersTabel/UsersTabel';
 
-const UpdateManagerPage = () => {
+const UpdateUsersPage = () => {
 
     const navigate = useNavigate();
     useEffect(() => {
@@ -18,11 +17,10 @@ const UpdateManagerPage = () => {
         <>
             <AdminNavigationBar></AdminNavigationBar>
             <div className='page'>
-                <CreateManagerComponent></CreateManagerComponent>
-                <ManagerTabel></ManagerTabel>
+                <UsersTabel></UsersTabel>
             </div>
         </>
 
     );
 }
-export default UpdateManagerPage;
+export default UpdateUsersPage;
