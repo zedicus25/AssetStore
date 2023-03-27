@@ -21,8 +21,7 @@ const SubCategoriesFilter = () => {
                     await dispatch(setSubCategories({id:x.id, checked:e.target.checked}));}}>
                 <input key={idx} type="checkbox" id={`subCategory=${x.id}`} name={`subCategory=${x.id}`}/>
                 <label key={`${idx}+${idx}`} htmlFor={`subCategory=${x.id}`}>{x.name}</label>
-              </div>);
-                // return <Form.Check key={idx}  id={`subCategory=${x.id}`} type='checkbox' className="subcategory-input" label={x.name}></Form.Check>
+              </div>); 
             })}
         </div>
     );

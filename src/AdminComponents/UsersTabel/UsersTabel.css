@@ -21,3 +21,31 @@ table {
     background-color: #f2f2f2;
   }
   
+  .user-search 
+  {
+     padding: 10px;
+     border-radius: 5px;
+     border: 1px solid #ccc;
+     margin-bottom: 20px;
+   }
+ 
+   .delete-btn  {
+     padding: 10px;
+     margin: 10px;
+     background-color: #ff5248;
+     color: #eee;
+     border: none;
+     border-radius: 5px;
+     padding: 4px 8px;
+     font-size: 18px;
+     cursor: pointer;
+     margin-bottom: 5px;
+     font-weight: 600;
+     transition: background-color 0.3s ease;
+   }
+   
+   .delete-btn:hover {
+     background-color: #eee;
+     color: #ff5248;
+     border: 2px solid #ff5248;
+   }

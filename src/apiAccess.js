@@ -72,6 +72,30 @@ const put = async(url, data) => {
     return res;
 }
 
+
+//------------------users------------------------
+const addAdmin = async(login, email, password) => {
+    return await post(`${apiUrl}/Authentication/regAdmin`, {Email:email,Password: password, UserName: login});
+}
+
+const addManager= async(login, email, password) => {
+    return await post(`${apiUrl}/Authentication/regManager`, {Email:email,Password: password, UserName: login});
+}
+
+const getUsers = async() => {
+    return await get(`${apiUrl}/Users/getUsers`);
+}
+const getAdmins = async() => {
+    return await get(`${apiUrl}/Users/getAdmins`);
+}
+const getManagers= async() => {
+    return await get(`${apiUrl}/Users/getManagers`);
+}
+
+const deleteUser = async(state) => {
+    return await post(`${apiUrl}/Users/deleteUser?userId=${state.userId}`)
+}
+
 //--------------subcategories----------------
 const getSubCategories = async () => { 
     return await get(`${apiUrl}/SubCategory/subCategoryList`);
@@ -226,7 +250,13 @@ const methods = {
     updateSubCategory: updateSubCategory,
     deleteSubCategory: deleteSubCategory,
     addOrder: addOrder,
-    getBuyedProducts: getBuyedProducts
+    getBuyedProducts: getBuyedProducts,
+    addAdmin: addAdmin,
+    addManager: addManager,
+    getAdmins: getAdmins,
+    getManagers: getManagers,
+    getUsers: getUsers,
+    deleteUser: deleteUser
 }
 
 export default methods;

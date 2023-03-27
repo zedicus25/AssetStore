@@ -6,7 +6,7 @@ const CategoriesManagmentPanel = () => {
     return(
     <div className="flexbox-row">
             <ManagerNavBar></ManagerNavBar>
-            <div style={{padding:20}}>
+            <div className="page">
                 <div className="flexbox-column">
                     <h4>Adding category:</h4>
                     <AddCategoryPanel></AddCategoryPanel>

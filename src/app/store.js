@@ -5,6 +5,7 @@ import filterReduser from "./filtersSlice";
 import subCategoriesReducer from "./subCategoriesSlice";
 import busketSlice  from "./busketSlice";
 import ordersSlice from "./ordersSlice";
+import usersSlice from "./usersSlice";
 
 export const store = configureStore({
     reducer:{
@@ -13,6 +14,7 @@ export const store = configureStore({
         categories: categoriesSlice,
         filter: filterReduser,
         busket: busketSlice,
-        orders: ordersSlice
+        orders: ordersSlice,
+        users: usersSlice
     }
 });

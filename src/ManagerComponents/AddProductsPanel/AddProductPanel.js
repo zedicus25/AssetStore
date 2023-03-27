@@ -73,12 +73,11 @@ const AddProductPanel = () => {
             newProducts.AssetFile = "";
             formData.append('product', JSON.stringify(newProducts));
             let res = await dispatch(createProduct(formData));
-            if (res.payload.status == '200') {
+            if (res) {
                 alert("Added!");
                 clearInputs();
                 window.location.reload(false);
-            } else {
-                alert('Try later!');
+                return;
             }
 
 
@@ -94,7 +93,7 @@ const AddProductPanel = () => {
     }
 
     return (
-        <div className="flexbox-row">
+        <div className="page">
             <ManagerNavBar></ManagerNavBar>
             <div style={{ padding: 20, display: 'flex', flexDirection: 'row' }}>
                 <form>
@@ -117,7 +116,7 @@ const AddProductPanel = () => {
                         <p className="error-text">{productsError.productImage}</p>
                     </div>
                     <div className="form-group mt-3">
-                        <label>Product image</label>
+                        <label>Product content</label>
                         <input name='AssetFile' onChange={(e) => {
                             newProducts.AssetFile = e.target.files.item(0);
                         }}

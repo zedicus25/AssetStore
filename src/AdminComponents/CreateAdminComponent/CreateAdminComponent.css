@@ -30,7 +30,7 @@
     margin-bottom: 20px;
   }
   
-  .admin-registration button[type="submit"] {
+  .admin-registration button {
     background-color: #4c9fff;
     color: #fff;
     border: none;
@@ -44,7 +44,12 @@
     transition: background-color 0.3s ease;
   }
   
-  .admin-registration button[type="submit"]:hover {
+  .admin-registration button:hover {
     background-color: #2f75b5;
   }
   
+  .error-text{
+    font-size: 14px;
+    color: rgb(252, 40, 40);
+    font-weight: 600;
+  }
