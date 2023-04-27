@@ -6,7 +6,7 @@ const CarouselComponet = () => {
           <Carousel.Item>
             <img
               className="d-block w-100 slide-icon"
-              src="https://blobsassetstore.blob.core.windows.net/site/slide1.jpg"
+              src="slide2.jpg"
               alt="First slide"
             />
             <Carousel.Caption>
@@ -19,21 +19,21 @@ const CarouselComponet = () => {
           <Carousel.Item>
             <img
               className="d-block w-100 slide-icon"
-              src="https://blobsassetstore.blob.core.windows.net/site/slide2.jpg"
+              src="slide3.jpg"
               alt="Second slide"
             />
     
             <Carousel.Caption>
               <h3>Second slide label</h3>
               <p>
-               <a className='pa' href='https://www.ign.com/articles/biggest-games-of-2023'>Image source</a>
+               <a className='pa' href='https://www.ign.com/articles/best-pc-games'>Image source</a>
               </p>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
             <img
               className="d-block w-100 slide-icon"
-              src="https://blobsassetstore.blob.core.windows.net/site/slide3.jpg"
+              src="slide1.jpeg"
               alt="Third slide"
             />
     

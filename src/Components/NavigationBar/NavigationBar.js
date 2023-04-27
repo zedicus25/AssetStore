@@ -38,8 +38,8 @@ function NavigationBar(props){
         </nav>
         <div className='controls-btn'>
             <Link to='/account' className='nick'>{token.getUserData().username === "" ? "" : token.getUserData().username}</Link>
-            <img onClick={() => setLoginModalShow(true)} className="icon login-icon" src="https://blobsassetstore.blob.core.windows.net/site/loginIcon.png" alt="login"></img>
-            <img onClick={() => setbusketModalShow(true)}  className="icon" src="https://blobsassetstore.blob.core.windows.net/site/cartIcon.png" alt="cart"></img>
+            <img onClick={() => setLoginModalShow(true)} className="icon login-icon" src="user_icon.png" alt="login"></img>
+            <img onClick={() => setbusketModalShow(true)}  className="icon" src="cart_icon.png" alt="cart"></img>
         </div>
         <LoginModal show={loginModalShow} onHide={() => setLoginModalShow(false)} />
         <BusketModal show={busketModal} onHide={() => setbusketModalShow(false)}></BusketModal>

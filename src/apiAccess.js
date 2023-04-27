@@ -1,7 +1,6 @@
 import axios from "axios";
 import token from './jwtToken';
 
-//const apiUrl = "https://assetstoreapi.azurewebsites.net/api";
 //const apiUrl = "http://wonof44260-001-site1.itempurl.com/api";
 const apiUrl = "https://localhost:7167/api";
 
