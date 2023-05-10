@@ -2,7 +2,8 @@ import axios from "axios";
 import token from './jwtToken';
 
 //const apiUrl = "http://wonof44260-001-site1.itempurl.com/api";
-const apiUrl = "https://localhost:7167/api";
+//const apiUrl = "https://localhost:7167/api";
+const apiUrl = "http://sikoko7815-001-site1.atempurl.com/api";
 
 
 const get = async (url) => {
