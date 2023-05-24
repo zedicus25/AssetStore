@@ -33,7 +33,7 @@ const AddProductPanel = () => {
 
     const validate = (values) => {
         const errors = {};
-        if (!values.Name) {
+        if (!values.Name || values.Name.length === 0) {
             errors.productName = "Product name is required!";
         }
         else if (!/^[a-zA-Z0-9+-]+$/.test(values.Name)) {
@@ -73,13 +73,13 @@ const AddProductPanel = () => {
             newProducts.AssetFile = "";
             formData.append('product', JSON.stringify(newProducts));
             let res = await dispatch(createProduct(formData));
+            console.log(res);
             if (res) {
                 alert("Added!");
                 clearInputs();
                 window.location.reload(false);
                 return;
             }
-
         }
     }
 
@@ -94,28 +94,28 @@ const AddProductPanel = () => {
         <div className="page">
             <ManagerNavBar></ManagerNavBar>
             <div style={{ padding: 20, display: 'flex', flexDirection: 'row' }}>
-                <form>
+                <form onSubmit={(e) => addProduct(e)}>
                     <h5>Add new product</h5>
                     <div className="form-group mt-3">
                         <label>Product name</label>
-                        <input name='Name' value={newProducts.productName} onChange={(e) => handleChange(e)} className="form-control mt-1" type='text' placeholder='Name'></input>
+                        <input required name='Name' value={newProducts.productName} onChange={(e) => handleChange(e)} className="form-control mt-1" type='text' placeholder='Name'></input>
                         <p className="error-text">{productsError.productName}</p>
                     </div>
                     <div className="form-group mt-3">
                         <label>Product price</label>
-                        <input name="Price" value={newProducts.productPrice} onChange={(e) => handleChange(e)} className="form-control mt-1" type='number' min='1' placeholder='Price'></input>
+                        <input required name="Price" value={newProducts.productPrice} onChange={(e) => handleChange(e)} className="form-control mt-1" type='number' min='1' placeholder='Price'></input>
                         <p className="error-text">{productsError.productPrice}</p>
                     </div>
                     <div className="form-group mt-3">
                         <label>Product image</label>
-                        <input name='Photo' onChange={(e) => {
+                        <input required name='Photo' onChange={(e) => {
                             newProducts.Photo = e.target.files.item(0);
                         }} type='file' className="form-control mt-1" accept="image/*"></input>
                         <p className="error-text">{productsError.productImage}</p>
                     </div>
                     <div className="form-group mt-3">
                         <label>Product content</label>
-                        <input name='AssetFile' onChange={(e) => {
+                        <input required name='AssetFile' onChange={(e) => {
                             newProducts.AssetFile = e.target.files.item(0);
                         }}
                             type='file' className="form-control mt-1" accept=""></input>
@@ -123,17 +123,17 @@ const AddProductPanel = () => {
                     </div>
                     <div className="form-group mt-3">
                         <label>Quantity count</label>
-                        <input name='Quantity' value={newProducts.productQuantity} onChange={(e) => handleChange(e)} className="form-control mt-1" min='1' type='number' placeholder='Quantity'></input>
+                        <input required name='Quantity' value={newProducts.productQuantity} onChange={(e) => handleChange(e)} className="form-control mt-1" min='1' type='number' placeholder='Quantity'></input>
                         <p className="error-text">{productsError.productQuantity}</p>
                     </div>
                     <div className="form-group mt-3">
                         <label>Sold count</label>
-                        <input name="Sold" value={newProducts.soldCount} onChange={(e) => handleChange(e)} className="form-control mt-1" min='1' type='number' placeholder='Sold'></input>
+                        <input required name="Sold" value={newProducts.soldCount} onChange={(e) => handleChange(e)} className="form-control mt-1" min='1' type='number' placeholder='Sold'></input>
                         <p className="error-text">{productsError.soldCount}</p>
                     </div>
                     <div className="form-group mt-3">
                         <label>Category</label>
-                        <select name='CategoryId' onChange={(e) => handleChange(e)} className="form-select" id='categoryDrop'>
+                        <select required name='CategoryId' onChange={(e) => handleChange(e)} className="form-select" id='categoryDrop'>
                             <option value='' disabled=''>Select</option>
                             {
                                 categories.map((x, idx) => {
@@ -145,7 +145,7 @@ const AddProductPanel = () => {
                     </div>
                     <div className="form-group mt-3">
                         <label>Sub category</label>
-                        <select name='SubCategoryId' onChange={(e) => handleChange(e)} className="form-select" id="subCategoryDrop">
+                        <select required name='SubCategoryId' onChange={(e) => handleChange(e)} className="form-select" id="subCategoryDrop">
                             <option value='' disabled=''>Select</option>
                             {
                                 subCategories.map((x, idx) => {
@@ -156,7 +156,7 @@ const AddProductPanel = () => {
                         <p className="error-text">{productsError.subCategoryId}</p>
                     </div>
                     <div className="form-group mt-3">
-                        <input onClick={(e) => addProduct(e)} type='button' className="btn btn-primary" value='Add product'></input>
+                        <input type='submit' className="btn btn-primary" value='Add product'></input>
                     </div>
                 </form>
             </div>

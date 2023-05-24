@@ -159,7 +159,7 @@ const searchProducts = async(state) => {
 
 const addProduct = async(state) => {
     let res = {};
-    axios.post(`${apiUrl}/Products/addProduct`,state, {
+    await axios.post(`${apiUrl}/Products/addProduct`,state, {
                     headers:{
                         'Accept': 'application/json',
                         'Content-Type': 'multipart/form-data',

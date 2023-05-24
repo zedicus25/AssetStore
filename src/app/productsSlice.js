@@ -129,6 +129,7 @@ export const productsSlice = createSlice({
                 state.status = 'loading';
             }).addCase(addProduct.fulfilled, (state, action) => {
                 state.status = 'idle';
+                console.log(state);
                 return state;
             }).addCase(getProductsInPage.pending, (state) => {
                 state.values = [];
