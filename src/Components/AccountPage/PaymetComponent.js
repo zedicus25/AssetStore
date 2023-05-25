@@ -67,11 +67,10 @@ const PaymentComponent = () => {
         return errors;
     };
 
-    const buyProducts = async () => {
+    const buyProducts = async (e) => {
+        e.preventDefault();
         setCardErrors(validate(paymentData));
-        console.log(cardErrors);
         if (Object.keys(cardErrors).length === 0) {
-            console.log("work")
             let res = await dispatch(createOrder({ products: products, totalPrice: total }));
             if (res.payload.request.status == '200') {
                 await dispatch(clearBusket());
@@ -84,22 +83,23 @@ const PaymentComponent = () => {
 
     return (
         <div className='payment-wrap'>
+            <form onSubmit={(e) => buyProducts(e)}>
             <div className="card-input">
                 <label htmlFor="number">Card number:</label>
-                <input value={paymentData.number} onChange={(e) => handleChange(e)} type="number" id="card-number" name="number" placeholder="1234567890123456" />
+                <input min="1000000000000000" max="9999999999999999" required value={paymentData.number} onChange={(e) => handleChange(e)} type="number" id="card-number" name="number" placeholder="1234567890123456" />
                 <p className="error-text">{cardErrors.number}</p>
                 <label htmlFor="owner">Name on card:</label>
-                <input value={paymentData.owner} onChange={(e) => handleChange(e)} type="text" id="card-name" name="owner" placeholder="Ivan Ivanov" />
+                <input minLength="5" maxLength="55" required value={paymentData.owner} onChange={(e) => handleChange(e)} type="text" id="card-name" name="owner" placeholder="Ivan Ivanov" />
                 <p className="error-text">{cardErrors.owner}</p>
                 <label htmlFor="card-expiry">Expiry:</label>
                 <div className="expiry-input">
-                    <input value={paymentData.month} onChange={(e) => handleChange(e)} type="number" min='1' max='12' id="card-expiry-month" name="month" placeholder="MM" />
+                    <input required value={paymentData.month} onChange={(e) => handleChange(e)} type="number" min='1' max='12' id="card-expiry-month" name="month" placeholder="MM" />
                     <span>/</span>
-                    <input value={paymentData.year} onChange={(e) => handleChange(e)} type="number" min='2023' max='2050' id="card-expiry-year" name="year" placeholder="YY" />
+                    <input required value={paymentData.year} onChange={(e) => handleChange(e)} type="number" min='2023' max='2050' id="card-expiry-year" name="year" placeholder="YY" />
                 </div>
                 <p className="error-text">{cardErrors.month}/{cardErrors.year}</p>
                 <label htmlFor="card-cvv">CVV:</label>
-                <input value={paymentData.cvv} onChange={(e) => handleChange(e)} type="password" id="card-cvv" name="cvv" placeholder="123" />
+                <input minLength="3" maxLength="3" required value={paymentData.cvv} onChange={(e) => handleChange(e)} type="password" id="card-cvv" name="cvv" placeholder="123" />
                 <p className="error-text">{cardErrors.cvv}</p>
             </div>
             <div className='width-600'>
@@ -111,9 +111,10 @@ const PaymentComponent = () => {
             <div className='pay-foot'>
                 <p className='total-price-pay'>Total: ${total}</p>
                 <div>
-                    <input onClick={() => buyProducts()} className='order-btn' type='button' value='Buy'></input>
+                    <input className='order-btn' type='submit' value='Buy'></input>
                 </div>
             </div>
+            </form>
         </div>
 
     );

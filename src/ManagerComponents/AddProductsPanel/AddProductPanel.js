@@ -72,8 +72,8 @@ const AddProductPanel = () => {
             newProducts.Photo = "";
             newProducts.AssetFile = "";
             formData.append('product', JSON.stringify(newProducts));
+
             let res = await dispatch(createProduct(formData));
-            console.log(res);
             if (res) {
                 alert("Added!");
                 clearInputs();
