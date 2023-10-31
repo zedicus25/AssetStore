@@ -1,70 +1,28 @@
-# Getting Started with Create React App
+# Asset Store Back-End
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is the Front-End part of the course work on Web development. The grade for the course work is 12 out of 12. [Back-End](https://github.com/zedicus25/JWT)
 
-## Available Scripts
+## **Overview**
+This is a React application. The Redux and Axios libraries were used to interact with the API.
+![mainPage](https://github.com/zedicus25/AssetStore/assets/95874337/60850f87-65de-465f-8e72-8e62992fbb6f)
 
-In the project directory, you can run:
+Users can register or log in to an existing account.
+![loginPage](https://github.com/zedicus25/AssetStore/assets/95874337/a4933d1b-60a7-4054-8d16-128af1607fdb)
 
-### `npm start`
+After authorisation, the user can buy assets and download the content of the asset after pseudo-payment.
+![buyedProducts](https://github.com/zedicus25/AssetStore/assets/95874337/f174654e-0aff-446e-8a8b-201f3175b354)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The site also offers sorting by category/subcategory and search by name.
+![allProducts](https://github.com/zedicus25/AssetStore/assets/95874337/fa8cbf8f-c390-4371-a966-32ce0e4b6375)
+![sortedProducts](https://github.com/zedicus25/AssetStore/assets/95874337/0e437409-fe02-4322-8ec1-12c59c3c7ece)
+![searchProducts](https://github.com/zedicus25/AssetStore/assets/95874337/45740864-c296-4c82-9e15-8e495f0b35bc)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The manager can create new categories, subcategories, and products. They can also delete and edit them.
+![addProduct](https://github.com/zedicus25/AssetStore/assets/95874337/b2cdac8c-c5d3-43db-bf7c-db13ea1da957)
+![updateProducts](https://github.com/zedicus25/AssetStore/assets/95874337/470e82ee-517d-40a7-bb48-68b6b985f061)
+![updateCategory](https://github.com/zedicus25/AssetStore/assets/95874337/9b46f21a-99ca-4422-acec-df17152c49e9)
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The administrator can edit users, meaning create new managers and administrators. They can also delete users, admins and managers.
+![usersPage](https://github.com/zedicus25/AssetStore/assets/95874337/37bada0c-a627-40c4-a705-70d1148df4d8)
+![managersPage](https://github.com/zedicus25/AssetStore/assets/95874337/05a0e35f-61ff-4fcc-8ed4-2a3bed053867)
+![adminPage](https://github.com/zedicus25/AssetStore/assets/95874337/0d3dee0a-4c99-4042-bbc4-273a7ce2f3a0)
