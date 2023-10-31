@@ -1,4 +1,4 @@
-# Asset Store Back-End
+# Asset Store Front-End
 
 This is the Front-End part of the course work on Web development. The grade for the course work is 12 out of 12. [Back-End](https://github.com/zedicus25/JWT)
 
